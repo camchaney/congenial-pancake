@@ -1,7 +1,8 @@
 void gCommand(String command) {  //main gCode command
+  noLoop();
   gcode.add(command);
   myPort.write(command+"\n");  //writes it instantaneously
-  
+  // this takes care of the delay
   while (myPort.available() == 0) {
     delay(10);
   }
@@ -11,6 +12,7 @@ void gCommand(String command) {  //main gCode command
       println(inBuffer); 
     }
   }
+  loop();
 }
 
 void startPrint() {

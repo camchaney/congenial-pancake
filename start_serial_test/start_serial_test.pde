@@ -10,14 +10,19 @@ float h_paper = 215; //mm
 float x_center = w_bed/2;
 float y_center = h_bed/2;
 
-float travel_speed = 1200;
-float draw_speed = 400;
+float travel_speed = 1000;  //og 1200
+float draw_speed = 1000;
 
 //circle properties
 float r = 50;
-
+float n = 200;  //og 100
+//dynamic circle properties
 float x_prev;
 float y_prev;
+float t = PI/1000;
+float i = 0;
+
+float dTh = TWO_PI/n;
 
 Serial myPort;
 
@@ -26,33 +31,41 @@ void setup() {
   noLoop();
   
   gcode = new ArrayList<String>();
-  float ratio = h_paper/height;
   
   drawPaper();
   startSerial();
   
   startPrint();
-  drawCircle();
-  endPrint();
+  //drawCircle();
+  //endPrint();
   //gCommand("G0 X"+width/2+" Y252");
   
 }
 
 void draw() {
-  control();
-  
+  if (i < 2) {
+    delay(1000);
+  }
   // draw circle for void draw() function
-  beginShape();
+  float th = dTh*i;
+  float x = width/2 + r*cos(th);
+  float y = height/2 + r*sin(th);
+  //println(frameCount);
+  println(i);
+  point(x, y);
+  gCommand("G0 X"+x+" Y"+y);
+  i ++;
+  
+}
+
+void dynaCircle() {
   
 }
 
 void drawCircle() {
   beginShape();
-  float n = 100;
-  float revs = 1;
-  float dr = revs*TWO_PI/n;
   for (float i = 0; i < n + 1; i++) {
-    float th = dr*i;
+    float th = dTh*i;
     float x = width/2 + (r)*cos(th);
     float y = height/2 + (r)*sin(th);
     vertex(x, y);
@@ -62,8 +75,6 @@ void drawCircle() {
       gCommand("G28 Z0");
       setSpeed(draw_speed);
     }
-    //this can be commented now because we have the while control in gCode
-    //delay(100);  //just trying it for kicks
   }
   endShape();
 }
