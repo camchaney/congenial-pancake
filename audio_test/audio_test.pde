@@ -2,6 +2,7 @@ import processing.sound.*;
 
 float r = 50;
 float n = 200;
+float nEnd = 215/2-r;
 
 AudioIn input;
 Amplitude loudness;
@@ -19,10 +20,12 @@ void setup() {
 void draw() {
   float vol = loudness.analyze();
   println(vol);
+  int size = int(map(vol, 0, 0.5, 1, nEnd));
   
   float dTh = TWO_PI/n;
   float th = dTh*frameCount;
-  float x = width/2 + r*cos(th);
-  float y = height/2 + r*sin(th);
+  float x = width/2 + (r + size)*cos(th);
+  float y = height/2 + (r + size)*sin(th);
   point(x, y);
+  
 }
