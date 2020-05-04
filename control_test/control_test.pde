@@ -25,7 +25,7 @@ void setup() {
   startSerial();
   
   startPrint();
-  delay(5000);
+  delay(5000);  //delay after startPrint()
   //endPrint();
   //gCommand("G0 X"+width/2+" Y252");
   

@@ -6,10 +6,8 @@ float w_bed = 290; //mm
 float h_bed = 275 - 23; //mm (actually different because the normal extruder sticks out more)
 float w_paper = 280; //mm
 float h_paper = 215; //mm
-
 float x_center = w_bed/2;
 float y_center = h_bed/2;
-
 float travel_speed = 1000;  //og 1200
 float draw_speed = 1000;
 
@@ -20,8 +18,8 @@ float n = 200;  //og 100
 float x_prev;
 float y_prev;
 float t = PI/1000;
-float i = 0;
-
+float i = 0;  //draw() counter
+float c = 0;  //gCommand counter
 float dTh = TWO_PI/n;
 
 Serial myPort;
@@ -43,9 +41,6 @@ void setup() {
 }
 
 void draw() {
-  if (i < 2) {
-    delay(1000);
-  }
   // draw circle for void draw() function
   float th = dTh*i;
   float x = width/2 + r*cos(th);
@@ -55,10 +50,6 @@ void draw() {
   point(x, y);
   gCommand("G0 X"+x+" Y"+y);
   i ++;
-  
-}
-
-void dynaCircle() {
   
 }
 

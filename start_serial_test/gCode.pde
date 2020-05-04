@@ -12,7 +12,7 @@ void gCommand(String command) {  //main gCode command
       println(inBuffer); 
     }
   }
-  loop();
+  if loop();
 }
 
 void startPrint() {
@@ -23,16 +23,8 @@ void startPrint() {
   //gCommand("G1 X117.5 Y125 F8000"); //Go to the center (modify according to your printer)
   //gCommand("G28 Z0"); //Home Z axis (this actually shouldn't be until later)
   
-  delay(1000);
+  //delay(1000);
   loop();  //starts draw loop
-}
-
-void startPrintTEST() {
-  gCommand("G91");
-  gCommand("G0 Z10");
-  gCommand("G28 X0 Y0");
-  gCommand("G90");
-  //gCommand("G28 Z0"); //Home Z axis (we're not homing just for an "air pass")
 }
 
 void endPrint(){
