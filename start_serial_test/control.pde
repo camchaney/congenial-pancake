@@ -39,6 +39,14 @@ void keyPressed() {
       endPrint();
       noLoop();  //again just for safe measures.
       break;
+    case('p'):
+      noLoop();
+      delay(100);
+      break;
+    case('r'):
+      loop();
+      delay(100);
+      break;
   }
   if (key == CODED) {
     switch(keyCode){

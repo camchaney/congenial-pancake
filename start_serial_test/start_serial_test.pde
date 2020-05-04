@@ -23,6 +23,7 @@ float i = 0;  //draw() counter
 float dTh = TWO_PI/n;
 float d0 = TWO_PI*r/n;
 float t0 = d0/draw_speed;
+float margin = 10;
 
 //serial
 Serial myPort;
@@ -30,7 +31,7 @@ Serial myPort;
 //audio
 AudioIn input;
 Amplitude loudness;
-float nEnd = (h_paper/2) - r;
+float nEnd = ((h_paper/2) - r) - margin;
 
 void setup() {
   size(290, 215); //same as PAPER now
@@ -52,7 +53,7 @@ void setup() {
 void draw() {
   // noise volume
   float vol = loudness.analyze();
-  int size = int(map(vol, 0, 1, 0, nEnd));
+  int size = int(map(vol, 0, 0.5, 0, nEnd));
   
   // draw circle for void draw() function
   float th = dTh*i;
@@ -66,7 +67,7 @@ void draw() {
     println(d1);
     float v = d1/t0;
     println(v);
-    float vC = constrain(v, draw_speed, 3000);
+    float vC = constrain(v, draw_speed, 6000);  //testing upper limits
     setSpeed(vC);
   }
   point(x, y);
