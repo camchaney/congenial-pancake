@@ -62,8 +62,8 @@ void drawCircle() {
     //r = r - 0.1;
     //float N = ni*noise(nf*sin(nf*th/2));
     float N = ni*noise(sin(nf*th/2));
-    float x = width/2 + (r + N)*cos(th);
-    float y = height/2 + (r + N)*sin(th);
+    float x = width/2 + (r)*cos(th);
+    float y = height/2 + (r)*sin(th);
     vertex(x, y);
     gCommand("G0 X"+x+" Y"+y);  //make sure not to do G1 (this will extrude)
     
