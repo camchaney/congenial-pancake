@@ -24,7 +24,11 @@ float i = 0;  //draw() counter
 float c = 0;  //gCommand counter
 float dTh = TWO_PI/n;
 
+//serial
 Serial myPort;
+
+//audio
+
 
 void setup() {
   size(290, 215); //same as PAPER now
