@@ -1,4 +1,6 @@
+import processing.sound.*;
 import processing.serial.*;
+
 ArrayList<String> gcode;
 
 //printer properties
@@ -48,7 +50,12 @@ void draw() {
   //println(frameCount);
   println(i);
   point(x, y);
-  gCommand("G0 X"+x+" Y"+y);
+  gLoopCommand("G0 X"+x+" Y"+y);
+  
+  if (i < 1) {  //only right after initial move
+    gLoopCommand("G28 Z0");
+    setSpeed(draw_speed);
+  }
   i ++;
   
 }

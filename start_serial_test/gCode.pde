@@ -1,4 +1,21 @@
 void gCommand(String command) {  //main gCode command
+  //noLoop();
+  gcode.add(command);
+  myPort.write(command+"\n");  //writes it instantaneously
+  // this takes care of the delay
+  while (myPort.available() == 0) {
+    delay(10);
+  }
+  while (myPort.available() > 0) {
+    String inBuffer = myPort.readString();
+    if (inBuffer != null) {
+      println(inBuffer); 
+    }
+  }
+  //loop();
+}
+
+void gLoopCommand(String command) {  //main gCode command
   noLoop();
   gcode.add(command);
   myPort.write(command+"\n");  //writes it instantaneously
@@ -12,7 +29,7 @@ void gCommand(String command) {  //main gCode command
       println(inBuffer); 
     }
   }
-  if loop();
+  loop();
 }
 
 void startPrint() {
