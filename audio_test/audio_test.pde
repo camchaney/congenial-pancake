@@ -20,7 +20,7 @@ void setup() {
 void draw() {
   float vol = loudness.analyze();
   println(vol);
-  int size = int(map(vol, 0, 0.5, 1, nEnd));
+  int size = int(map(vol, 0, 1, 1, nEnd));
   
   float dTh = TWO_PI/n;
   float th = dTh*frameCount;
