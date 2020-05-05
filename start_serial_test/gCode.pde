@@ -45,10 +45,13 @@ void startPrint() {
 }
 
 void endPrint(){
+  noLoop();
   gCommand("G91"); //Relative mode
   //gCommand("G1 E-4 F3000"); //Retract filament to avoid filament drop on last layer
   //gCommand("G1 X0 Y100 Z20"); //Facilitate object removal
   gCommand("G0 Z10"); //Facilitate object removal
+  gCommand("G90");
+  gCommand("G0 X"+(width/2)+" Y"+h_paper);
   //gCommand("G1 E4"); //Restore filament position
   //gCommand("M 107"); //Turn fans off
   gCommand("M18");  //motors off

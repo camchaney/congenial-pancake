@@ -37,7 +37,7 @@ void keyPressed() {
       noLoop();
       delay(100);  //what is this delay for?
       endPrint();
-      noLoop();  //again just for safe measures.
+      //noLoop();  //again just for safe measures.
       break;
     case('p'):
       noLoop();
